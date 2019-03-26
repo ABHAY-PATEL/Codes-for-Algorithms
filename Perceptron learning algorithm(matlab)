@@ -1,0 +1,29 @@
+p=[1 0 0
+   1 0 1
+   1 1 0
+   1 1 1];
+d=[0 0 0 1];
+w=[0 0 0];
+eta=1;
+update=1;
+while update==1
+    for i=1:4
+        y=p(i,:)*w';
+        if y>=0 & d(i)==0
+            w=w-eta*p(i,:);
+            up(i)=1;
+        elseif y<=0 & d(i)==1
+            w=w+eta*p(i,:);
+            up(i)=1;
+        else 
+            up(i)=0;
+        end
+    end
+    no_of_updates=up*up';
+    if  no_of_updates>0
+        update=1;
+    else 
+        update=0;
+    end
+  
+end
